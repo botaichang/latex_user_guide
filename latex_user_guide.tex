@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt]{article}
+
+\begin{document}
+
+\section{Start}
+
+\noindent
+\emph{analysis}
+
+equations 
+
+$|y-x| < \delta $
+
+$|y-x| < \epsilon$
+
+KL divergence
+
+$KL(p||q) = \sum_{k=1}^{n} p_k \log \frac{p_k}{q_k} $
+
+
+\section{Characters and Control Sequences}
+
+
+$\to$
+
+$\rightarrow$
+
+
+\section{Quatation Marks and Dashes}
+
+
+'Single Quatation'
+
+``double Quatation''
+
+'dashes 1 -- '
+
+'dashes 2 --- '
+
+
+\section{Change Font in text Mode}
+\tiny hello
+
+\small hello
+
+
+\Large hello
+
+\huge hello
+
+
+\small hello
+
+\large hello
+
+\section{Text Embeded in Displayed Equations}
+
+
+$y = ax + b \mbox{ for all } x \in R $
+
+\section{Fractions}
+
+$\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+\section{Three dots}
+
+$f(x_1,x_2,x_3,\cdots,x_n) = x_1^2 + x_2^2 + x_3^2 + \cdots + x_n^2$
+
+\section{Brackets and Norms}
+
+\[ \|f\| =  \{ K \in [0,+\infty) : |f(x)| \leq K\|x\| \mbox{ for all } x \in X \}. \] 
+
+\section{Matrices and arrays}
+
+$ \chi(\lambda) = 
+\left| 
+\begin{array}{ccc}
+  \lambda - a  &  -b   & -c  \\ 
+  - d          &  \lambda - e   & -f  \\ 
+  - g  &  -h   & \lambda - i  \\ 
+\end{array} 
+\right| 
+$
+
+\section{Derivatives and Integrals}
+$ 
+\frac{\partial u}{\partial t} =
+\frac{\partial^2 u}{\partial^2 x} + 
+\frac{\partial^2 u}{\partial^2 y} + 
+\frac{\partial^2 u}{\partial^2 z}  
+$
+
+
+$
+\int_0^{+\infty} x^n  e^{-x} dx = n!
+$
+
+\section{Lists using enumerate, itemsize,description}
+
+  \begin{enumerate}
+  \item
+    enumerate 1
+  \item
+    enumerate 2
+  \end{enumerate}
+
+  \begin{itemize}
+  \item
+    itemsize 1
+  \item
+    itemsize 2
+  \end{itemize}
+
+  \begin{description}
+    \item[caffe]
+      caffe
+    \item[caffe2]
+      caffe2
+    \item[mxnet]
+      mxnet 
+  \end{description}
+
+
+  \section{Pre-Formatted Text}
+  \begin{verbatim}
+  python code  
+  for i in range(10):
+     print i
+  \end{verbatim}
+
+  \section{Table}
+  \begin{tabular}{|r|r|}
+    \hline
+    $n$ & value \\
+    \hline
+    1   &  1  \\ 
+    2   &  2  \\
+    3   &  6  \\ 
+    4   &  24 \\ 
+    \hline
+  \end{tabular}
+
+  \section{Defining our own Control Sequences}
+
+  \newcommand{\intmp}[1]{\int_{-\infty}^{+\infty} #1 dx}
+
+  $\intmp{f(x)}$
+
+\end{document}

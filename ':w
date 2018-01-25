@@ -1,0 +1,73 @@
+\documentclass[a4paper,12pt]{article}
+
+\begin{document}
+
+\section{Start}
+
+\emph{analysis}
+
+equations 
+
+$|y-x| < \delta $
+
+$|y-x| < \epsilon$
+
+KL divergence
+
+$KL(p||q) = \sum_{k=1}^{n} p_k \log \frac{p_k}{q_k} $
+
+
+\section{Characters and Control Sequences}
+
+
+$\to$
+
+$\rightarrow$
+
+
+\section{Quatation Marks and Dashes}
+
+
+'Single Quatation'
+
+``double Quatation''
+
+'dashes 1 -- '
+
+'dashes 2 --- '
+
+
+\section{Change Font in text Mode}
+
+\tiny hello
+
+\small hello
+
+
+\Large hello
+
+\huge hello
+
+
+\small hello
+
+\large hello
+
+\section{Text Embeded in Displayed Equations}
+
+
+$y = ax + b \mbox{ for all } x \in R $
+
+\section{Fractions}
+
+$\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+\section{Three dots}
+
+$f(x_1,x_2,x_3,\cdots,x_n) = x_1^2 + x_2^2 + x_3^2 + \cdots + x_n^2$
+
+\section{Brackets and Norms}
+
+$ \|f\| = \inf \{ K \in \[0,+\infty) :|f(x)| \leq K\|x\| \mbox{ for all } x \in X \}. $
+
+\end{document}
