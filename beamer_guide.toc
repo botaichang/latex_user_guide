@@ -3,4 +3,4 @@
 \beamer@sectionintoc {3}{GAN Abstract}{4}{0}{2}
 \beamer@sectionintoc {4}{Previous Generative Models}{7}{0}{3}
 \beamer@sectionintoc {5}{Mathematics for Adversarial nets}{11}{0}{4}
-\beamer@sectionintoc {6}{What is KL divergence?}{16}{0}{5}
+\beamer@sectionintoc {6}{What is KL divergence?}{17}{0}{5}

@@ -9,6 +9,7 @@
 \usetheme{PaloAlto}
 \definecolor{kugreen}{RGB}{132,158,139}
 \definecolor{kugreen}{RGB}{214, 100 ,0}
+\definecolor{kugreen}{RGB}{0, 100 ,100}
 %\usecolortheme{beaver}     % use white-grey colour style
 \usecolortheme[named=kugreen]{structure}     % use white-grey colour style
 
@@ -101,7 +102,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mathematics for Adversarial nets 4}
+  \frametitle{Mathematics for Adversarial nets 5}
   \begin{block}{Optimium D }
     \begin{enumerate}
       \item $\max \limits_{D} V(D,G) = \int_{x} p_{data}(x)[\log D(x)] dx + \int_{x} p_g(x) \log (1 - D(x)) dx $
@@ -112,6 +113,17 @@
       \item We get $D = \frac{a}{a+b} $
       \item That is,for given G, $D^\star = \frac{p_{data}(x)}{p_g(x) + p_{data}(x)}$
     \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mathematics for Adversarial nets 6}
+  \begin{block}{Optimium D }
+      $ for given G, D^\star = \frac{p_{data}(x)}{p_g(x) + p_{data}(x)} $
+      $ \max \limits_{D} V(D^\star,G) = \int_{x} p_{data}(x) [\log D^*(x)] dx + \int_{x} p_g(x) \log (1 - D^*(x)) dx $ \\
+      $ = \int_{x} p_{data}(x) [\log \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}] dx + \int_{x} p_g(x) [\log \frac{p_g(x)}{p_{data}(x) + p_g(x)}] dx $ \\
+      $ = \int_{x} p_{data}(x) [\log \frac{\frac{1}{2}p_{data}(x)}{\frac{1}{2}(p_{data}(x) + p_g(x))}] dx + \int_{x} p_g(x) [\log \frac{\frac{1}{2}p_g(x)}{\frac{1}{2}(p_{data}(x) + p_g(x))}] dx $
+      $ = -\log 4 + KL(p_{data} || {\frac{1}{2}(p_{data} + p_g} )) + KL(p_{g} || {\frac{1}{2}(p_{data} + p_g})) $ 
   \end{block}
 \end{frame}
 
