@@ -1,11 +1,16 @@
-\documentclass{beamer}
+\documentclass{beamer}[10]
 \usepackage{texpower}
 \usepackage{ucs}
 \usepackage{ctex}
 %\usepackage{multicol}
 %\usepackage{multirow}
-\usetheme{Warsaw}
+%\usetheme{Warsaw}
+%\usetheme{Goettingen}
+\usetheme{PaloAlto}
+\definecolor{kugreen}{RGB}{132,158,139}
+\definecolor{kugreen}{RGB}{214, 100 ,0}
 %\usecolortheme{beaver}     % use white-grey colour style
+\usecolortheme[named=kugreen]{structure}     % use white-grey colour style
 
 % This is only inserted into the PDF information catalog. Can be left out.
 \subject{presentation}
@@ -89,11 +94,24 @@
 \begin{frame}
   \frametitle{Mathematics for Adversarial nets 4}
   \begin{block}{Optimium D }
-    \begin{align}
-    \max \limits_{D} V(D,G) &= E_{x \sim p_{data}}[\log D(x)] + E_{z \sim p_z}[\log (1 - D(G(z))]  \\
-                            &= E_{x \sim p_{data}}[\log D(x)] + E_{x \sim p_g}[\log (1 - D(x)]     \\
-			    &= \int_{x} p_{data}(x)[\log D(x)] dx + \int_{x} p_g(x) \log (1 - D(x)) dx 
-    \end{align}
+    $\max \limits_{D} V(D,G) = E_{x \sim p_{data}}[\log D(x)] + E_{z \sim p_z}[\log (1 - D(G(z))] $ 
+                            $= E_{x \sim p_{data}}[\log D(x)] + E_{x \sim p_g}[\log (1 - D(x)]     $ 
+			    $= \int_{x} p_{data}(x)[\log D(x)] dx + \int_{x} p_g(x) \log (1 - D(x)) dx $
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mathematics for Adversarial nets 4}
+  \begin{block}{Optimium D }
+    \begin{enumerate}
+      \item $\max \limits_{D} V(D,G) = \int_{x} p_{data}(x)[\log D(x)] dx + \int_{x} p_g(x) \log (1 - D(x)) dx $
+      \item for given x,  $p_{data}(x)$ is constant,marked as $a$   
+      \item for given x, $p_g(x)$ is constant,marked as  $b$  
+      \item $f(D) = a \log D + b \log(1-D)$
+      \item To find max of $f(D)$, $ \frac{\partial f(D)}{\partial D} = 0 $
+      \item We get $D = \frac{a}{a+b} $
+      \item That is,for given G, $D^\star = \frac{p_{data}(x)}{p_g(x) + p_{data}(x)}$
+    \end{enumerate}
   \end{block}
 \end{frame}
 
