@@ -1,0 +1,112 @@
+\documentclass{beamer}
+\usepackage{texpower}
+\usepackage{ucs}
+\usepackage{ctex}
+%\usepackage{multicol}
+%\usepackage{multirow}
+\usetheme{Warsaw}
+%\usecolortheme{beaver}     % use white-grey colour style
+
+% This is only inserted into the PDF information catalog. Can be left out.
+\subject{presentation}
+\keywords{example}
+
+\title{Mathematics behind GAN}
+\author{Li Jun}
+
+
+\begin{document}
+\begin{frame}
+ \titlepage  
+\end{frame}
+
+\section*{Outline}
+\begin{frame}
+  \frametitle{Contents}
+  \tableofcontents
+  %\tableofcontents[hidesubsections,sections={<1-4>}]
+\end{frame}
+
+\section{What is GAN?}
+\begin{frame}
+  \frametitle{Math behind GAN}
+  \begin{definition}
+    GAN is composed of two networks: Descrimitive Network, and Generative Network.
+  \end{definition}
+\end{frame}
+
+\section{GAN Abstract}
+\begin{frame}
+ \frametitle{GAN abstract}   
+ \begin{enumerate}
+   \item<1->  GAN is a framework for estimating generative models via an \emph{adversarial process}
+   \item<2->  simultaneously train two models: A \emph{generative} model G and A \emph{discriminative} model D. 
+   \item<3->  This framework corresponds to a minimax two-player game. 
+ \end{enumerate}
+\end{frame}
+
+\section{Previous Generative Models}
+\begin{frame}
+ \frametitle{Previous Generative Models}   
+ \begin{enumerate}
+   \item<1->  deep Boltzmann machine  
+   \item<2->  Generative stochastic networks 
+   \item<3->  variational autoencoders(VAEs) 
+   \item<4->  $\cdots$
+ \end{enumerate}
+\end{frame}
+
+
+\section{Mathematics for Adversarial nets}
+\begin{frame}
+  \frametitle{Mathematics for Adversarial nets}
+  \begin{block}{Generator}
+  \begin{enumerate}
+    \item data $x$
+    \item input noise variables $p_z(z)$
+    \item mapping to data space as $G(z;\theta_g)$ ,where G is a differentiable funciton represented by a multilayer perceptron with parameter $\theta_g$.
+  \end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mathematics for Adversarial nets 2}
+  \begin{block}{Discriminator}
+  \begin{enumerate}
+    \item $D(x;\theta_d)$ which is a multilayer perceptron that outputs a single scalar.
+    \item $D(x)$ represents the probability that x came from data rather than $p_g$
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mathematics for Adversarial nets 3}
+  \begin{block}{minimax playgame}
+    $\min \limits_{G} \max \limits_{D} V(D,G) = E_{x \sim p_{data}}[\log D(x)] + E_{z \sim p_z}[\log (1 - D(G(z))] $
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Mathematics for Adversarial nets 4}
+  \begin{block}{Optimium D }
+    \begin{align}
+    \max \limits_{D} V(D,G) &= E_{x \sim p_{data}}[\log D(x)] + E_{z \sim p_z}[\log (1 - D(G(z))]  \\
+                            &= E_{x \sim p_{data}}[\log D(x)] + E_{x \sim p_g}[\log (1 - D(x)]     \\
+			    &= \int_{x} p_{data}(x)[\log D(x)] dx + \int_{x} p_g(x) \log (1 - D(x)) dx 
+    \end{align}
+  \end{block}
+\end{frame}
+
+\section{What is KL divergence?}
+\begin{frame}
+  \frametitle{KL divergence}
+  \begin{definition}
+   $KL(p||q) = \sum_{k=1}^{N} p_k \log \frac{p_k}{q_k} $
+  \end{definition}
+
+  \begin{block}{What's the mean of KL divergence}
+     the divergence (distance) of two distributions. 
+  \end{block}
+\end{frame}
+
+\end{document}

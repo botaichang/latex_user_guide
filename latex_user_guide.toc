@@ -1,0 +1,15 @@
+\beamer@endinputifotherversion {3.24pt}
+\beamer@sectionintoc {1}{Start}{1}{0}{1}
+\beamer@sectionintoc {2}{Characters and Control Sequences}{1}{0}{2}
+\beamer@sectionintoc {3}{Quatation Marks and Dashes}{1}{0}{3}
+\beamer@sectionintoc {4}{Change Font in text Mode}{1}{0}{4}
+\beamer@sectionintoc {5}{Text Embeded in Displayed Equations}{1}{0}{5}
+\beamer@sectionintoc {6}{Fractions}{1}{0}{6}
+\beamer@sectionintoc {7}{Three dots}{1}{0}{7}
+\beamer@sectionintoc {8}{Brackets and Norms}{1}{0}{8}
+\beamer@sectionintoc {9}{Matrices and arrays}{2}{0}{9}
+\beamer@sectionintoc {10}{Derivatives and Integrals}{2}{0}{10}
+\beamer@sectionintoc {11}{Lists using enumerate, itemsize,description}{2}{0}{11}
+\beamer@sectionintoc {12}{Pre-Formatted Text}{3}{0}{12}
+\beamer@sectionintoc {13}{Table}{3}{0}{13}
+\beamer@sectionintoc {14}{Defining our own Control Sequences}{3}{0}{14}
