@@ -2,6 +2,8 @@
 \usepackage{texpower}
 \usepackage{ucs}
 \usepackage{ctex}
+\usepackage{graphics}
+\usepackage{algorithm,algorithmic}
 %\usepackage{multicol}
 %\usepackage{multirow}
 %\usetheme{Warsaw}
@@ -19,6 +21,7 @@
 
 \title{Mathematics behind GAN}
 \author{Li Jun}
+
 
 
 \begin{document}
@@ -63,9 +66,9 @@
 \end{frame}
 
 
-\section{Mathematics for Adversarial nets}
+\section{Math For Basic GAN}
 \begin{frame}
-  \frametitle{Mathematics for Adversarial nets}
+  \frametitle{Math For Basic GAN}
   \begin{block}{Generator}
   \begin{enumerate}
     \item data $x$
@@ -76,7 +79,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mathematics for Adversarial nets 2}
+  \frametitle{Math For Basic GAN 2}
   \begin{block}{Discriminator}
   \begin{enumerate}
     \item $D(x;\theta_d)$ which is a multilayer perceptron that outputs a single scalar.
@@ -86,14 +89,14 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mathematics for Adversarial nets 3}
+  \frametitle{Math For Basic GAN 3}
   \begin{block}{minimax playgame}
     $\min \limits_{G} \max \limits_{D} V(D,G) = E_{x \sim p_{data}}[\log D(x)] + E_{z \sim p_z}[\log (1 - D(G(z))] $
   \end{block}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mathematics for Adversarial nets 4}
+  \frametitle{Math For Basic GAN 4}
   \begin{block}{Optimium D }
     $\max \limits_{D} V(D,G) = E_{x \sim p_{data}}[\log D(x)] + E_{z \sim p_z}[\log (1 - D(G(z))] $ 
                             $= E_{x \sim p_{data}}[\log D(x)] + E_{x \sim p_g}[\log (1 - D(x)]     $ 
@@ -102,7 +105,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mathematics for Adversarial nets 5}
+  \frametitle{Math For Basic GAN 5}
   \begin{block}{Optimium D }
     \begin{enumerate}
       \item $\max \limits_{D} V(D,G) = \int_{x} p_{data}(x)[\log D(x)] dx + \int_{x} p_g(x) \log (1 - D(x)) dx $
@@ -117,15 +120,88 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Mathematics for Adversarial nets 6}
+  \frametitle{Math For Basic GAN 6}
   \begin{block}{Optimium D }
-      $ for given G, D^\star = \frac{p_{data}(x)}{p_g(x) + p_{data}(x)} $
+    $ \mbox{for given G, }D^\star = \frac{p_{data}(x)}{p_g(x) + p_{data}(x)} $ \\
       $ \max \limits_{D} V(D^\star,G) = \int_{x} p_{data}(x) [\log D^*(x)] dx + \int_{x} p_g(x) \log (1 - D^*(x)) dx $ \\
       $ = \int_{x} p_{data}(x) [\log \frac{p_{data}(x)}{p_{data}(x) + p_g(x)}] dx + \int_{x} p_g(x) [\log \frac{p_g(x)}{p_{data}(x) + p_g(x)}] dx $ \\
       $ = \int_{x} p_{data}(x) [\log \frac{\frac{1}{2}p_{data}(x)}{\frac{1}{2}(p_{data}(x) + p_g(x))}] dx + \int_{x} p_g(x) [\log \frac{\frac{1}{2}p_g(x)}{\frac{1}{2}(p_{data}(x) + p_g(x))}] dx $
       $ = -\log 4 + KL(p_{data} || {\frac{1}{2}(p_{data} + p_g} )) + KL(p_{g} || {\frac{1}{2}(p_{data} + p_g})) $ 
   \end{block}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Math For Basic GAN 7}
+  \begin{block}{Optimum Discriminator $D^\star$}
+    $ \max \limits_{D} V(D,G) =  -\log 4 + KL(p_{data} || {\frac{1}{2}(p_{data} + p_g} )) + KL(p_{g} || {\frac{1}{2}(p_{data} + p_g})) $ 
+    $ \mbox{ if } p_g = p_{data} $
+
+    $ \mbox{ then} \max \limits_{D} V(D,G) = -\log 4 $
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Math For Basic GAN 8}
+  \begin{block}{Distance at Optimum Discriminator}
+    $ \max \limits_{D} V(D,G) =  -\log 4 + KL(p_{data} || {\frac{1}{2}(p_{data} + p_g} )) + KL(p_{g} || {\frac{1}{2}(p_{data} + p_g})) $ 
+    $ \max \limits_{D} V(D,G) = -\log 4 + 2*JSD(p_{data}||p_g)$
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Math For Basic GAN 9}
+  \begin{Theorem}[Optimum Generator $G^*$]
+    After we get optimum Discriminator $D^\star$, we want to get optimum Generator by \emph{gradient descent} to get the minimum value of $\max V(D,G)$, $\to \min \limits_{G} \max \limits_{D}V(G,D) $ and when $p_g = p_{data}$, it can get the minimum.
+
+    $\theta_{g} \leftarrow \theta_{g} - \alpha \frac{\partial L(G)}{\partial \theta_{g}}$
+  \end{Theorem}
+\end{frame}
+
+\section{Wassertein GAN}
+\begin{frame}
+  \frametitle{Different Distances}
+  \begin{enumerate}
+    \item <1-> Total Variation Distance
+      $ \delta(P_r,P_g) = \sup \limits_{A \in \Sigma} |P_r(A) - P_g(A)| $
+    \item <2-> Kullback-Leibler (KL) Divergence 
+      $ KL(P_r||P_g) = \int {P_r(x) \log \frac{P_r(x)}{P_g(x)}} d\mu(x) $ 
+    \item <3-> Jensen-Shannon (JS) Divergence  \\
+      $ JS(P_r,P_g) = KL(P_r||(P_r + P_g)/2) + KL(P_g || (P_r + P_g)/2) $
+    \item <4-> Earth-Mover(EM) distance or Wasserstein-1
+      $ W(P_r,P_g) = \inf \limits_{\gamma \in \Pi(P_r,P_g)} E_{(x,y) \sim \gamma} [ \|x-y\| ]$
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Wassertein GAN}
+  \begin{block}{Distance}
+    $ W(P_r,P_g) = \sup \limits_{\|f\|_L \le 1} {E_{x \sim P_{r}}[f(x)] - E_{x \sim P_{\theta}}[f(x)] } $
+    $ W(P_r,P_g) = \max \limits_{\|f\|_L \le 1} {E_{x \sim P_{r}}[f(x)] - E_{x \sim P_{\theta}}[f(x)] } $
+    We should find all 1-Lipschitz functions f:  $\chi \to \textbf{R} $
+    \begin{block}{Lipschitz Function}
+    $ \|f(x_1) - f(x_2)\| \le  k \|x_1 - x_2 \| $   
+    $ \mbox{when } k = 1, \mbox{for 1-Lipschitz} $
+    \end{block}
+    $ \mbox{That is: Find Max distance}W(P_r,P_g), 
+    \mbox{and then optim by gradient descent}. $
+    $ \nabla_{\theta} W(P_r,P_\theta) = - E_{z \sim p(z)} [\nabla_{\theta} f(g_{\theta}(z)) ] $
+    Also, we clamp the weights to a fixed box,say $W = [-0.01,0.01 ]$.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Wassertein GAN summary}
+  So, Wassertein GAN just clip the weights? and then assume the neural network learn the f function to fullfil the 1-Lipschitz function!
+\end{frame}
+
+\section{Improved Training of Wassertein GAN}
+\begin{frame}
+  \frametitle{Improved Wassertein GAN}
+  \begin{block}
+    To be continued.
+  \end{block}
+\end{frame}
+
 
 \section{What is KL divergence?}
 \begin{frame}
